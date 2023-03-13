@@ -23,6 +23,8 @@ std::vector<std::string> ignore_list = {
 	"obj",
 	"Debug",
 	"Release",
+	"debug",
+	"release",
 	"packages",
 	"node_modules",
 	"build",
@@ -38,10 +40,13 @@ std::vector<std::string> ignore_list = {
 	".idea",
 	"package.json",
 	"package-lock.json",
+	".cargo",
+	"target"
 };
 map<string, string> langMap = {
 	{".abap", "ABAP"},
 	{".asc", "AGS Script"},
+	{".astro", "Astro"},
 	{".ash", "AGS Script"},
 	{".ampl", "AMPL"},
 	{".mod", "AMPL"},
@@ -99,6 +104,9 @@ map<string, string> langMap = {
 	{".bmx", "BlitzMax"},
 	{".bsv", "Bluespec"},
 	{".boo", "Boo"},
+	{".gitignore", "Git Ignore"},
+	{".gitmodules", "Git Modules"},
+	{".gitattributes","Git Attributes"},
 	{".b", "Brainfuck"},
 	{".bf", "Brainfuck"},
 	{".brs", "Brightscript"},
@@ -705,8 +713,6 @@ map<string, string> langMap = {
 	{".reds", "Red"},
 	{".cw", "Redcode"},
 	{".rpy", "Ren'Py"},
-	{".rs", "RenderScript"},
-	{".rsh", "RenderScript"},
 	{".robot", "RobotFramework"},
 	{".rg", "Rouge"},
 	{".rb", "Ruby"},
@@ -973,12 +979,41 @@ map<string, string> langMap = {
 	{".prg", "xBase"},
 	{".ch", "xBase"},
 	{".prw", "xBase"},
+	{".tmx", "Tiled Map"},
+	{ "", "No extension" }
+};
+std::vector<std::string> ignore_extensions = {
+	".exe",
+	".pdb",
+	".png",
+	".ico",
+	".jpg",
+	".jpeg",
+	".sqlite",
+	".d",
+	".elf",
+	".nro",
+	".nacp",
+	".mp4",
+	".jar",
+	".zip",
+	".dll",
+	".lib",
+	".obj",
+	".log",
+	".iobj",
+	".ipdb",
+	".recipe",
+	".tbin",
 };
 
 string convert_extension(string extension) {
 	
 	//match them
-	if (langMap.find(extension) != langMap.end()) {
+	if (ignore_extensions.end() != std::find(ignore_extensions.begin(), ignore_extensions.end(), extension)) {
+		return "";
+	}
+	else if (langMap.find(extension) != langMap.end()) {
 		return langMap[extension];
 	}
 	else {

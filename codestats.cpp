@@ -52,6 +52,10 @@ int main(int argc, char* argv[])
 				file.clear();
 				
 				extension = convert_extension(extension);
+
+				if (extension == "") 
+					continue;
+				
 				
 				if (langMap.find(extension) == langMap.end()) {
 					langMap[extension] = lineCount;
@@ -77,7 +81,7 @@ int main(int argc, char* argv[])
 	for (int i = 0; i < longestLang - 4; i++) {
 		printf(" ");
 	}
-	printf("\LINES\tPERCENT\n");
+	printf("LINES\tPERCENT\n");
 	for (int i = 0; i < longestLang + 19; i++) {
 		printf("-");
 	}
