@@ -382,7 +382,6 @@ map<string, string> langMap = {
 	{".hx", "Haxe"},
 	{".hxsl", "Haxe"},
 	{".hy", "Hy"},
-	{".bf", "HyPhy"},
 	{".pro", "IDL"},
 	{".dlm", "IDL"},
 	{".ipf", "IGOR Pro"},
